@@ -1,9 +1,7 @@
-
-
 module.exports = {
-    getID :  getRandomID
+  getID: getRandomID
 }
 
 function getRandomID() {
-    return Math.random().toString(36).substring(7);
+  return Math.random().toString(36).substring(7);
 }

@@ -1,5 +1,5 @@
 {
-  "name": "back",
+  "name": "reboot-front-example",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,11 +8,11 @@
     "prod": "NODE_ENV=production nodemon index.js"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "cors": "^2.8.4",
     "express": "^4.16.3",
-    "mongoose": "^5.0.11",
+    "mongoose": "^5.7.3",
     "morgan": "^1.9.1"
   },
   "devDependencies": {
