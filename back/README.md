@@ -15,11 +15,11 @@ $ npm install
 
 ### Environment Variables
 
-The next setup step is to create an `Environment Variable` file `.env` in this folder. We have provided a `.env.sample` for you with a sample configuration for both **development** and **production** environments.
+The next setup step is to create an `Environment Variable` file `.env` in this folder. We have provided a `.env.example` for you with a sample configuration for both **development** and **production** environments.
 
 Make your own copy_
 ```
-$ cp .env.sample .env
+$ cp .env.example .env
 ```
 
 And customize the sample params to your needs
