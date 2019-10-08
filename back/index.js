@@ -15,7 +15,7 @@ if (!config) return console.error(`❌ Invalid ${environment} environment`);
 app.use(cors()); // Using cors middleware
 app.use(morgan('combined')); // Using morgan middleware
 app.use(express.json()); // Using JSON Body parser middleware
-app.use((req, rex, next) => { // Creating your custom middleware
+app.use((req, res, next) => { // Creating your custom middleware
   console.log("🍺My Custom middleware");
   next()
 })
