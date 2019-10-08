@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const homeschema = new mongoose.Schema({
+const homeSchema = new mongoose.Schema({
   title: {
     type: String,
     minlength: [10, "10 characters minimum"],
@@ -37,5 +37,5 @@ const homeschema = new mongoose.Schema({
   },
 });
 
-const model = mongoose.model('home', homeschema);
-module.exports = model;
+const homeModel = mongoose.model('home', homeSchema);
+module.exports = homeModel;
