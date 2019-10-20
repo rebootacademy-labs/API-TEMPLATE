@@ -4,6 +4,7 @@ const cors = require('cors');
 const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
+const jwt = require("jsonwebtoken");
 const app = express();
 
 // CONFIG AND ENVIRONMENT LOADING FROM .env FILE
@@ -12,16 +13,18 @@ const environment = process.env.NODE_ENV;
 config = config[environment];
 if (!config) return console.error(`❌ ERROR | Invalid ${environment} environment`);
 
-// MIDDLEWARES
-app.use(cors());                                // Using Cross-Origin-Request-Service
-app.use(morgan('combined'));                    // Using Morgan Logger
-app.use(express.json());                        // Using JSON Body-parser
-app.use(express.urlencoded( {extended: false})) // Using URL Body-Parser
+app.use(cors({ origin: "http://localhost:8080" }) );
+app.use(morgan('combined'));
+app.use(express.json());
+app.use(express.urlencoded( {extended: false}));
 
-// app.use((req, res, next) => { // Creating your custom middleware
-//   console.log("🍺 My Custom middleware");
-//   next()
-// })
+const authenticate = (req,res,next) => {
+  jwt.verify(req.headers.token, "secret", (err, token) =>{
+    if (err) { res.status(403).json({error: "Token not valid"})}
+    res.locals.token = token;
+    next();
+  });
+}
 
 // NONGOOSE
 mongoose
@@ -32,6 +35,14 @@ mongoose
 // ROUTING
 const apiRouter = require('./routes');
 app.use('/api', apiRouter);
+
+app.get('/api/whoami', authenticate, (req,res) => {
+  console.log(res.locals.token.email);
+  const UserModel = require("./models/users.model");
+  UserModel
+    .findOne({email: res.locals.token.email})
+    .then(user => { res.send(`jalou! ${ user.name }`); })
+})
 
 // Init server
 app.listen(config.port, (err) => {
