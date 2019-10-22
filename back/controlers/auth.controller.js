@@ -30,12 +30,15 @@ function login(req, res) {
     bcrypt.compare(req.body.user_password, user.password, (err, result) => {
       if (!result) { return res.json({error: `wrong password for ${req.body.user_email}`}) }
 
-      const token = jwt.sign( { username: user.name, email: user.email, },
+      const user_data = { username: req.body.name, email: req.body.email };
+
+      const token = jwt.sign(
+        user_data,
         "secret", // TODO SECRET MORE SECRET PLEASE
         { expiresIn: "1h" }
       );
 
-      return res.json({token: token, name: user.name, email: user.email})
+      return res.json({ token: token, ...user_data });
     })
   })
   .catch(err => handdleError(err, res));
