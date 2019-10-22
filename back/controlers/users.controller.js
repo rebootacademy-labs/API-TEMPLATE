@@ -9,33 +9,36 @@ module.exports = {
 };
 
 function getAllUsers(req, res) {
-  UserModel.find()
+  UserModel
+    .find()
     .then(response => res.json(response))
     .catch((err) => handdleError(err, res))
-
 }
 
 function getUserById(req, res) {
-  UserModel.findById(req.params.id)
+  UserModel
+    .findById(req.params.id)
     .then(response => res.json(response))
     .catch((err) => handdleError(err, res))
 }
 
 function deleteUserById(req, res) {
-  UserModel.findById(req.params.id)
-    .remove()
+  UserModel
+    .remove({ _id: req.params.id })
     .then(response => res.json(response))
-    .catch((err) => handdleError(err, res))
+    .catch(err => handdleError(err, res));
 }
 
 function createUser(req, res) {
-  UserModel.create(req.body)
+  UserModel
+    .create(req.body)
     .then(response => res.json(response))
     .catch((err) => handdleError(err, res))
 }
 
 function updateUser(req, res) {
-  UserModel.findByIdAndUpdate(req.params.id, req.body, {
+  UserModel
+    .findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true
     })

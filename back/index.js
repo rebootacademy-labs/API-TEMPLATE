@@ -12,13 +12,9 @@ config = config[environment];
 if (!config) return console.error(`❌ Invalid ${environment} environment`);
 
 // MIDDLEWARES
-app.use(cors()); // Using cors middleware
-app.use(morgan('combined')); // Using morgan middleware
-app.use(express.json()); // Using JSON Body parser middleware
-app.use((req, res, next) => { // Creating your custom middleware
-  console.log("🍺My Custom middleware");
-  next()
-})
+app.use(cors());              // Using cors middleware
+app.use(morgan('combined'));  // Using morgan middleware
+app.use(express.json());      // Using JSON Body parser middleware
 
 // NONGOOSE
 mongoose.connect(config.mongoURL + config.mongoDBName);
