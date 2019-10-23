@@ -12,6 +12,22 @@ The first time you start the server you may want to make sure you have the depen
 ```
 $ npm install
 ```
+### Install StandardJS Linter
+[StandardJS](https://standardjs.com/) is a JavaScript style guide, linter, and formatter.
+
+#### VSCode Extension
+You may want to install [VSCode Extension](https://marketplace.visualstudio.com/items?itemName=chenxsan.vscode-standardjs)
+
+> VSCODE `SETTINGS.JSON`:
+```
+  "javascript.validate.enable": false,
+  "standard.enable": true,
+  "standard.run": "onType",
+  "standard.autoFixOnSave": false,
+  "standard.usePackageJson": true
+```
+
+*Make sure you don't have duplicate rules!*
 
 ### Environment Variables
 
