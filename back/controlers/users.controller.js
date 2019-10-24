@@ -4,7 +4,6 @@ module.exports = {
   getAllUsers,
   getUserById,
   deleteUserById,
-  createUser,
   updateUser
 }
 
@@ -27,13 +26,6 @@ function deleteUserById (req, res) {
     .remove({ _id: req.params.id })
     .then(response => res.json(response))
     .catch(err => handdleError(err, res))
-}
-
-function createUser (req, res) {
-  UserModel
-    .create(req.body)
-    .then(response => res.json(response))
-    .catch((err) => handdleError(err, res))
 }
 
 function updateUser (req, res) {

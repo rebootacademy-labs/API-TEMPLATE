@@ -15,15 +15,19 @@ const userSchema = new mongoose.Schema({
     },
     unique: [true, 'This is email is registered']
   },
+  password: {
+    type: String,
+    required: true
+  },
   role: {
     type: String,
     enum: ['host', 'regular'],
-    required: true,
+    required: false,
     default: 'regular'
   },
   birthDate: {
     type: Number,
-    required: true
+    required: false
   },
   createdAt: {
     type: Number,
