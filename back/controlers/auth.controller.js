@@ -40,7 +40,7 @@ function login (req, res) {
       if (!user) { return res.json({ error: 'wrong email' }) }
 
       bcrypt.compare(req.body.user_password, user.password, (err, result) => {
-        if (err) { return res.json({ error: `wrong password for ${req.body.user_email}` }) }
+        if (!result) { return res.json({ error: `wrong password for ${req.body.user_email}` }) }
 
         const userData = { username: user.name, email: user.email }
 
