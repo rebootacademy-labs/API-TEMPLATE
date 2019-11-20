@@ -3,8 +3,14 @@
     <v-card-title><h2>Login</h2></v-card-title>
     <v-card-text>
       <v-form>
-        <v-text-field type="text" label="Email" prepend-icon="mdi-email" />
         <v-text-field
+          v-model="email"
+          type="text"
+          label="Email"
+          prepend-icon="mdi-email"
+        />
+        <v-text-field
+          v-model="password"
           :type="showPassword ? 'text' : 'password'"
           label="Password"
           prepend-icon="mdi-lock"
@@ -25,7 +31,9 @@ export default {
   name: "login",
   data() {
     return {
-      showPassword: false
+      showPassword: false,
+      email: "",
+      password: ""
     };
   }
 };
