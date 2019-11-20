@@ -8,11 +8,7 @@
           label="Name"
           prepend-icon="mdi-account-circle"
         />
-        <v-text-field
-          type="text"
-          label="Email"
-          prepend-icon="mdi-account-circle"
-        />
+        <v-text-field type="text" label="Email" prepend-icon="mdi-email" />
         <v-text-field
           :type="showPassword ? 'text' : 'password'"
           label="Password"
