@@ -1,0 +1,46 @@
+<template>
+  <v-card width="400" class="mt-5 mx-auto">
+    <v-card-title><h2>Signup</h2></v-card-title>
+    <v-card-text>
+      <v-form>
+        <v-text-field
+          type="text"
+          label="Name"
+          prepend-icon="mdi-account-circle"
+        />
+        <v-text-field
+          type="text"
+          label="Email"
+          prepend-icon="mdi-account-circle"
+        />
+        <v-text-field
+          :type="showPassword ? 'text' : 'password'"
+          label="Password"
+          prepend-icon="mdi-lock"
+          append-icon="mdi-eye-off"
+          @click:append="showPassword = !showPassword"
+        />
+        <v-text-field
+          :type="showPassword ? 'text' : 'password'"
+          label="Confirm Password"
+          prepend-icon="mdi-lock-circle"
+        />
+      </v-form>
+    </v-card-text>
+    <v-divider />
+    <v-card-actions>
+      <v-btn color="success" class="mx-auto">SIGNUP</v-btn>
+    </v-card-actions>
+  </v-card>
+</template>
+
+<script>
+export default {
+  name: "signup",
+  data() {
+    return {
+      showPassword: false
+    };
+  }
+};
+</script>
