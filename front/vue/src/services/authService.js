@@ -19,7 +19,7 @@ async function signup(name, email, password) {
     const response = await ApiClient.post("auth/signup", newUser);
     // Success 🎉 Save Data
     localStorage.setItem("token", response.data.token);
-    localStorage.setItem("username", response.data.username);
+    localStorage.setItem("name", response.data.username);
     localStorage.setItem("email", response.data.email);
     return true;
   } catch (error) {

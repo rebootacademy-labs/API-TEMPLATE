@@ -6,7 +6,10 @@
       </v-toolbar-title>
       <v-spacer />
       <v-btn v-if="!name" text rounded to="auth">LOGIN</v-btn>
-      <span v-else>Hi {{ name }}!</span>
+      <span v-else>
+        Hi {{ name }}!
+        <v-btn text rounded @click="logout">LOGOUT</v-btn>
+      </span>
     </v-app-bar>
 
     <v-content>
@@ -24,11 +27,25 @@ export default {
       email: null
     };
   },
+  created() {
+    this.name = localStorage.getItem("name");
+    this.email = localStorage.getItem("email");
+  },
   mounted() {
     this.$root.$on("updateUser", (name, email) => {
       this.name = name;
       this.email = email;
     });
+  },
+  methods: {
+    logout() {
+      this.name = null;
+      localStorage.removeItem("name");
+      this.email = null;
+      localStorage.removeItem("email");
+      this.token = null;
+      localStorage.removeItem("token");
+    }
   }
 };
 </script>
