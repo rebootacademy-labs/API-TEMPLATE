@@ -23,8 +23,8 @@ export default {
   name: "App",
   data() {
     return {
-      name: null,
-      email: null
+      name: "",
+      email: ""
     };
   },
   created() {
@@ -32,9 +32,9 @@ export default {
     this.email = localStorage.getItem("email");
   },
   mounted() {
-    this.$root.$on("updateUser", (name, email) => {
-      this.name = name;
-      this.email = email;
+    this.$root.$on("updateUser", () => {
+      this.name = localStorage.getItem("name");
+      this.email = localStorage.getItem("email");
     });
   },
   methods: {

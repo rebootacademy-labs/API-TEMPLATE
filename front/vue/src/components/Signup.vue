@@ -87,12 +87,11 @@ export default {
               this.snackbar_msg = "User Alredy Registered. Login?";
             } else {
               // Show validations to user
-              debugger;
               this.snackbar_msg = response.data.error.message;
             }
           } else {
             this.snackbar_msg = "User Successfully Registered!";
-            this.$root.$emit("updateUser", this.name, this.email);
+            this.$root.$emit("updateUser");
             this.$router.push("home");
           }
           this.snackbar = true;

@@ -35,16 +35,18 @@ async function signup(name, email, password) {
 }
 
 async function login(email, password) {
-  const response = await ApiClient.post("auth/login", {
-    email,
-    password
-  }).catch(error => {
-    console.error(error);
-  });
-  localStorage.setItem("token", response.data.token);
-  localStorage.setItem("name", response.data.name);
-  localStorage.setItem("email", response.data.email);
-  return response;
+  const user = {
+    user_email: email,
+    user_password: password
+  };
+  const response = await ApiClient.post("auth/login", user);
+  if (!response.data.error) {
+    // Success 🎉 Save Data
+    localStorage.setItem("token", response.data.token);
+    localStorage.setItem("name", response.data.username);
+    localStorage.setItem("email", response.data.email);
+  }
+  return response.data;
 }
 
 async function whoami() {

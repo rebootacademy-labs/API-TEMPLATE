@@ -23,7 +23,7 @@
     </v-card-text>
     <v-divider />
     <v-card-actions>
-      <v-btn color="success" class="mx-auto">Login</v-btn>
+      <v-btn color="success" class="mx-auto" @click="login">Login</v-btn>
     </v-card-actions>
     <v-snackbar v-model="snackbar" top right>
       {{ snackbar_msg }}
@@ -43,8 +43,35 @@ export default {
     return {
       showPassword: false,
       email: "",
-      password: ""
+      password: "",
+      snackbar: false,
+      snackbar_msg: "",
+      validForm: true,
+      rules: {
+        required: value => !!value || "Required.",
+        email: value => {
+          const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+          return pattern.test(value) || "Invalid e-mail.";
+        }
+      }
     };
+  },
+  methods: {
+    login() {
+      if (this.$refs.form.validate()) {
+        authApi.login(this.email, this.password).then(response => {
+          debugger;
+          if (response.error) {
+            this.snackbar_msg = response.error;
+          } else {
+            this.snackbar_msg = "Login Successful!";
+            this.$root.$emit("updateUser");
+            this.$router.push("home");
+          }
+          this.snackbar = true;
+        });
+      }
+    }
   }
 };
 </script>
