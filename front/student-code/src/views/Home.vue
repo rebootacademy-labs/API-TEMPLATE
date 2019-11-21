@@ -55,8 +55,7 @@
 </template>
 
 <script>
-// @ is an alias to /src
-import axios from "axios";
+import apiService from "@/services/auth.service.js";
 
 export default {
   name: "home",
@@ -72,42 +71,21 @@ export default {
   },
   methods: {
     login() {
-      console.log(this.user.email, this.user.password);
-      axios
-        .post("http://localhost:2222/api/auth/login", {
-          user_email: this.user.email,
-          user_password: this.user.password
+      apiService
+        .login({
+          email: this.user.email,
+          password: this.user.password
         })
-        .then(res => res.data)
-        .then(data => {
-          const user = {
-            token: data.token,
-            email: data.email,
-            name: data.username
-          };
-          localStorage.setItem("reboot-user", JSON.stringify(user));
-          this.$router.push("/about");
-        });
+        .then(this.$router.push("/about"));
     },
     signup() {
-      console.log(this.user.email, this.user.password);
-
-      axios
-        .post("http://localhost:2222/api/auth/signup", {
-          user_email: this.user.email,
-          user_password: this.user.password,
-          user_name: this.user.name
+      apiService
+        .signup({
+          email: this.user.email,
+          password: this.user.password,
+          username: this.user.name
         })
-        .then(res => res.data)
-        .then(data => {
-          const user = {
-            token: data.token,
-            email: data.email,
-            name: data.username
-          };
-          localStorage.setItem("reboot-user", JSON.stringify(user));
-          this.$router.push("/about");
-        });
+        .then(this.$router.push("/about"));
     }
   }
 };
