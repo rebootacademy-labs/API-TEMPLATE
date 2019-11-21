@@ -45,6 +45,7 @@ export default {
       localStorage.removeItem("email");
       this.token = null;
       localStorage.removeItem("token");
+      this.$router.push("auth");
     }
   }
 };

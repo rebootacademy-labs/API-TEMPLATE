@@ -60,7 +60,6 @@ export default {
     login() {
       if (this.$refs.form.validate()) {
         authApi.login(this.email, this.password).then(response => {
-          debugger;
           if (response.error) {
             this.snackbar_msg = response.error;
           } else {
