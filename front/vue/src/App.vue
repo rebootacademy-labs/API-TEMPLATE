@@ -5,7 +5,8 @@
         My Auth App
       </v-toolbar-title>
       <v-spacer />
-      <v-btn text rounded to="auth">LOGIN</v-btn>
+      <v-btn v-if="!name" text rounded to="auth">LOGIN</v-btn>
+      <span v-else>Hi {{ name }}!</span>
     </v-app-bar>
 
     <v-content>
@@ -16,6 +17,18 @@
 
 <script>
 export default {
-  name: "App"
+  name: "App",
+  data() {
+    return {
+      name: null,
+      email: null
+    };
+  },
+  mounted() {
+    this.$root.$on("updateUser", (name, email) => {
+      this.name = name;
+      this.email = email;
+    });
+  }
 };
 </script>
