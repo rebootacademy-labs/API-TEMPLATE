@@ -27,4 +27,20 @@ const router = new VueRouter({
   routes
 });
 
+router.beforeEach((to, from, next) => {
+  const whiteList = ["/"];
+  console.log("to.fullPath", to.fullPath);
+  if (whiteList.includes(to.fullPath)) {
+    next();
+  } else {
+    if ("reboot-user" in localStorage) {
+      console.log("El usuario está logeado");
+
+      next();
+    } else {
+      next("/");
+    }
+  }
+});
+
 export default router;

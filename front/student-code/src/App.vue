@@ -28,7 +28,7 @@
         target="_blank"
         text
       >
-        <span class="mr-2">Latest Release</span>
+        <span class="mr-2">Hola {{ user.username }} </span>
         <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
     </v-app-bar>
@@ -42,6 +42,19 @@
 <script>
 export default {
   name: "App",
-  components: {}
+  data() {
+    return {
+      user: {}
+    };
+  },
+  components: {},
+  created() {
+    const user = JSON.parse(localStorage.getItem("reboot-user"));
+    console.log({ user });
+    if (user) {
+      this.user = user;
+      // this.$router.push("/about");
+    }
+  }
 };
 </script>

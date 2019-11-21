@@ -76,7 +76,7 @@ export default {
           email: this.user.email,
           password: this.user.password
         })
-        .then(this.$router.push("/about"));
+        .then(() => this.$router.push("/about"));
     },
     signup() {
       apiService
@@ -85,7 +85,7 @@ export default {
           password: this.user.password,
           username: this.user.name
         })
-        .then(this.$router.push("/about"));
+        .then(() => this.$router.push("/about"));
     }
   }
 };
