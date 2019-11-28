@@ -2,6 +2,7 @@
   <v-app>
     <v-app-bar fixed app>
       <v-toolbar-title v-text="title" />
+      <v-toolbar-title v-text="userName" />
     </v-app-bar>
 
     <v-content>
@@ -19,11 +20,15 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
       title: "Reboot Final Project"
     };
+  },
+  computed: {
+    ...mapGetters(["userName"])
   }
 };
 </script>

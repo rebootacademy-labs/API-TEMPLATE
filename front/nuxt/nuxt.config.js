@@ -30,7 +30,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: [{ src: "~/plugins/vuex-persist", ssr: false }],
   /*
    ** Nuxt.js dev-modules
    */
@@ -53,7 +53,9 @@ export default {
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    baseURL: "http://localhost:2222/api/"
+  },
   /*
    ** vuetify module configuration
    ** https://github.com/nuxt-community/vuetify-module
