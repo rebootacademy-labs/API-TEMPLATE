@@ -4,7 +4,9 @@
       <v-col cols="4" offset-md="1">
         <v-form ref="form" lazy-validation>
           <v-card>
-            <v-card-title><h2>Login</h2></v-card-title>
+            <v-card-title>
+              <h2>Login</h2>
+            </v-card-title>
             <v-card-text>
               <v-text-field
                 v-model="email"
@@ -23,9 +25,7 @@
               />
             </v-card-text>
             <v-card-actions>
-              <v-btn color="success" class="mr-4" @click="login">
-                Login
-              </v-btn>
+              <v-btn color="success" class="mr-4" @click="login">Login</v-btn>
             </v-card-actions>
           </v-card>
         </v-form>
@@ -44,13 +44,13 @@ export default {
       rules: {
         required: v => !!v || "Item is required",
         email: value => {
-          const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-          return pattern.test(value) || "Invalid e-mail."
+          const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+          return pattern.test(value) || "Invalid e-mail.";
         }
       }
-    }
+    };
   }
-}
+};
 </script>
 
 <style scoped></style>

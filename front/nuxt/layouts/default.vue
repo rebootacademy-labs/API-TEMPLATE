@@ -23,7 +23,7 @@ export default {
   data() {
     return {
       title: "Reboot Final Project"
-    }
+    };
   }
-}
+};
 </script>

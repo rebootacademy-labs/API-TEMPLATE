@@ -1,4 +1,4 @@
-import colors from "vuetify/es5/util/colors"
+import colors from "vuetify/es5/util/colors";
 
 export default {
   mode: "universal",
@@ -90,8 +90,8 @@ export default {
           test: /\.(js|vue)$/,
           loader: "eslint-loader",
           exclude: /(node_modules)/
-        })
+        });
       }
     }
   }
-}
+};
