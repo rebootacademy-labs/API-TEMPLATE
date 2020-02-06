@@ -7,7 +7,7 @@
 })()
 
 const api = axios.create({
-  baseURL: "http://localhost:2222/api/",
+  baseURL: "/api/",
   timeout: 1000
 });
 
@@ -31,8 +31,6 @@ document.getElementById('btn-signup').addEventListener('click', (event) => {
 })
 
 document.getElementById('btn-login').addEventListener('click', (event) => {
-  console.log('loggggiinnnnn')
-
   const newUser = {
     user_email: document.getElementById("login_email").value,
     user_password: document.getElementById("login_password").value
