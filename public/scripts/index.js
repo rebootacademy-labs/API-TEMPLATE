@@ -22,7 +22,7 @@ document.getElementById('btn-signup').addEventListener('click', (event) => {
     .post("auth/signup", newUser)
     .then(function (response) {
       localStorage.setItem("token", response.data.token);
-      localStorage.setItem("name", response.data.name);
+      localStorage.setItem("name", response.data.username);
       localStorage.setItem("email", response.data.email);
     })
     .catch(function (error) {
@@ -40,9 +40,8 @@ document.getElementById('btn-login').addEventListener('click', (event) => {
     .post("auth/login", newUser)
     .then(function (response) {
       localStorage.setItem("token", response.data.token);
-      localStorage.setItem("name", response.data.name);
+      localStorage.setItem("name", response.data.username);
       localStorage.setItem("email", response.data.email);
-      console.log(response.data)
     })
     .catch(function (error) {
       console.log(error.response);

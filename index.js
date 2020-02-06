@@ -6,7 +6,6 @@ const morgan = require('morgan')
 const path = require('path')
 
 // NONGOOSE
-console.log(process.env.MONGO_URL)
 mongoose.connect(process.env.MONGO_URL,
   {
     dbName: process.env.MONGO_DB || 'test',
