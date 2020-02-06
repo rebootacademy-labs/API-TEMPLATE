@@ -9,6 +9,7 @@ const path = require('path')
 console.log(process.env.MONGO_URL)
 mongoose.connect(process.env.MONGO_URL,
   {
+    dbName: process.env.MONGO_DB || 'test',
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true
