@@ -1,4 +1,5 @@
 const UserModel = require('../models/users.model')
+const { handleError } = require('../utils/functions')
 
 module.exports = {
   getAllUsers,
@@ -11,21 +12,21 @@ function getAllUsers (req, res) {
   UserModel
     .find()
     .then(response => res.json(response))
-    .catch((err) => handdleError(err, res))
+    .catch((err) => handleError(err, res))
 }
 
 function getUserById (req, res) {
   UserModel
     .findById(req.params.id)
     .then(response => res.json(response))
-    .catch((err) => handdleError(err, res))
+    .catch((err) => handleError(err, res))
 }
 
 function deleteUserById (req, res) {
   UserModel
     .remove({ _id: req.params.id })
     .then(response => res.json(response))
-    .catch(err => handdleError(err, res))
+    .catch(err => handleError(err, res))
 }
 
 function updateUser (req, res) {
@@ -35,9 +36,5 @@ function updateUser (req, res) {
       runValidators: true
     })
     .then(response => res.json(response))
-    .catch((err) => handdleError(err, res))
-}
-
-function handdleError (err, res) {
-  return res.status(400).json(err)
+    .catch((err) => handleError(err, res))
 }

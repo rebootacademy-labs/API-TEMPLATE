@@ -1,6 +1,7 @@
 const UserModel = require('../models/users.model')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const { handleError } = require('../utils/functions')
 
 module.exports = {
   signup,
@@ -40,22 +41,19 @@ function login (req, res) {
       if (!user) { return res.json({ error: 'wrong email' }) }
 
       bcrypt.compare(req.body.user_password, user.password, (err, result) => {
+        if (err) { handleError(err) }
         if (!result) { return res.json({ error: `wrong password for ${req.body.user_email}` }) }
 
         const userData = { username: user.name, email: user.email }
 
         const token = jwt.sign(
           userData,
-          'secret', // TODO SECRET MORE SECRET PLEASE
+          process.env.SECRET,
           { expiresIn: '1h' }
         )
 
         return res.json({ token: token, ...userData })
       })
     })
-    .catch(err => handdleError(err, res))
-}
-
-function handdleError (err, res) {
-  return res.status(400).json(err)
+    .catch(err => handleError(err, res))
 }

@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken')
 const UserModel = require('../models/users.model')
 
 // Authenticate Middleware
-function authUser(req, res, next) {
+function authUser (req, res, next) {
   if (!req.headers.token) {
     res.status(403).json({ error: 'No Token found' })
   } else {
@@ -14,10 +14,16 @@ function authUser(req, res, next) {
           res.locals.user = user
           next()
         })
-    });
+    })
   }
 }
 
+// Return HTTP error with details in JSON
+function handleError (err, res) {
+  return res.status(400).json(err)
+}
+
 module.exports = {
-  authUser
+  authUser,
+  handleError
 }

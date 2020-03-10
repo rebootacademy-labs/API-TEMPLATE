@@ -1,3 +1,6 @@
+process.stdout.write('\x1B[2J\x1B[0f') // Clear terminal screen
+require('dotenv').config()
+
 const express = require('express')
 
 const cors = require('cors')
@@ -14,8 +17,7 @@ mongoose.connect(process.env.MONGO_URL,
     useUnifiedTopology: true
   }, err => {
     if (err) { throw new Error(err) }
-    console.info('💾 Connected to Mongo Database')
-    console.info('.')
+    console.info('💾 Connected to Mongo Database \n')
   })
 
 // ADDING MIDDLEWARES & ROUTER
@@ -27,12 +29,11 @@ const app = express()
   .use('/api', require('./routes'))
 
 // Init server
-const PORT = process.env.PORT || 2222;
+const PORT = process.env.PORT || 2222
 app.listen(PORT, (err) => {
   if (err) { throw new Error(err) }
   console.info('>'.repeat(40))
   console.info('💻  Reboot Server Live')
   console.info(`📡  PORT: http://localhost:${PORT}`)
-  console.info('>'.repeat(40))
-  console.info('.')
+  console.info('>'.repeat(40) + '\n')
 })
