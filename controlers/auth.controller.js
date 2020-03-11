@@ -23,7 +23,7 @@ function signup (req, res) {
 
       const token = jwt.sign(
         userData,
-        'secret', // TODO SECRET MORE SECRET PLEASE
+        process.env.SECRET, // TAKE SECRET KEY FROM .ENV
         { expiresIn: '1w' }
       )
 
